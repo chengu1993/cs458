@@ -1,0 +1,87 @@
+from django.db import models
+
+
+class Geoplace(models.Model):
+    placeID = models.AutoField(primary_key=True)
+    latitude = models.IntegerField(verbose_name="latitude")
+    longitude = models.IntegerField(verbose_name="longitude")
+    the_geom_meter = models.CharField(max_length=50, verbose_name="geom_meter")
+    name = models.CharField(max_length=50, verbose_name="name")
+    address = models.CharField(max_length=50, verbose_name="address")
+    city = models.CharField(max_length=10, verbose_name="city")
+    state = models.CharField(max_length=10, verbose_name="state")
+    country = models.CharField(max_length=10, verbose_name="country")
+    fax = models.IntegerField(verbose_name="fax")
+    zip = models.IntegerField(verbose_name="zip")
+    alcohol = models.CharField(max_length=20, verbose_name="alcohol")
+    smoking_area = models.CharField(max_length=30, verbose_name="smoking")
+    dress_code = models.CharField(max_length=10, verbose_name="dress code")
+    accessibility = models.CharField(max_length=30, verbose_name="accessibility")
+    price = models.CharField(max_length=10, verbose_name="price")
+    url = models.CharField(max_length=100, verbose_name="url")
+    Rambience = models.CharField(max_length=10, verbose_name="rambience")
+    franchise = models.CharField(max_length=1, verbose_name="franchise")
+    area = models.CharField(max_length=10, verbose_name="area")
+    other_services = models.CharField(max_length=10, verbose_name="otherservices")
+
+
+class userProfile(models.Model):
+    userID = models.AutoField(primary_key=True)
+    latitude = models.IntegerField(verbose_name="latitude")
+    longitude = models.IntegerField(verbose_name="longitude")
+    the_geom_meter = models.CharField(max_length=50, verbose_name="geom_meter")
+    smoker = models.BooleanField(verbose_name="smoker")
+    drink_level = models.CharField(max_length=20, verbose_name="drink_level")
+    dress_preference = models.CharField(max_length=30, verbose_name="dress_preference")
+    ambience = models.CharField(max_length=20, verbose_name="ambience")
+    transport = models.CharField(max_length=10, verbose_name="transport")
+    marital_status = models.CharField(max_length=10, verbose_name="martial")
+    hijos = models.CharField(max_length=10, verbose_name="hijos")
+    birth_year = models.CharField(max_length=20, verbose_name="birth_year")
+    interest = models.CharField(max_length=30, verbose_name="interest")
+    personality = models.CharField(max_length=50, verbose_name="personality")
+    religion = models.CharField(max_length=10, verbose_name="religion")
+    activity = models.CharField(max_length=20, verbose_name="activity")
+    color = models.CharField(max_length=10, verbose_name="color")
+    weight = models.FloatField(verbose_name="weight")
+    budget = models.CharField(max_length=10, verbose_name="budget")
+    height = models.FloatField(verbose_name="height")
+
+
+class Cuisine(models.Model):
+    cuisineID = models.AutoField(primary_key=True)
+    placeID = models.ForeignKey(Geoplace, verbose_name="place_id")
+    Rcuisine = models.CharField(max_length=30, verbose_name="cuisine")
+
+    def __unicode__(self):
+        return self.Rcuisine
+
+
+class Hours(models.Model):
+    hourID = models.AutoField(primary_key=True)
+    placeID = models.ForeignKey(Geoplace, verbose_name="place_id")
+    hours = models.CharField(max_length=20, verbose_name="hours")
+    days = models.CharField(max_length=5, verbose_name="days")
+
+
+class Parking(models.Model):
+    placeID = models.ForeignKey(Geoplace, verbose_name="place_id")
+    parkingID = models.AutoField(primary_key=True)
+    parking_lot = models.CharField(max_length=20, verbose_name="parking")
+
+
+class ratingFinal(models.Model):
+    ratingID = models.AutoField(primary_key=True)
+    userID = models.ForeignKey(userProfile, verbose_name="user_id")
+    placeID = models.ForeignKey(Geoplace, verbose_name="place_id")
+    rating = models.IntegerField(verbose_name="rating")
+    food_rating = models.IntegerField(verbose_name="food_rating")
+    service_rating = models.IntegerField(verbose_name="service_rating")
+
+
+class userCuisine(models.Model):
+    ucID = models.AutoField(primary_key=True)
+    userID = models.ForeignKey(userProfile, verbose_name="user_id")
+    Rcuisine = models.CharField(max_length=30, verbose_name="cuisine")
+
+
