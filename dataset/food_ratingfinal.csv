@@ -1,4 +1,4 @@
-ratingID,userID,placeID,rating,food_rating,service_rating
+id,userID,placeID,rating,food_rating,service_rating
 1,U1077,135085,2,2,2
 2,U1077,135038,2,2,1
 3,U1077,132825,2,2,2
