@@ -2,9 +2,9 @@ from django.db import models
 
 
 class Geoplace(models.Model):
-    placeID = models.AutoField(primary_key=True)
-    latitude = models.IntegerField(verbose_name="latitude")
-    longitude = models.IntegerField(verbose_name="longitude")
+    placeID = models.IntegerField(verbose_name="place_id")
+    latitude = models.FloatField(verbose_name="latitude")
+    longitude = models.FloatField(verbose_name="longitude")
     the_geom_meter = models.CharField(max_length=50, verbose_name="geom_meter")
     name = models.CharField(max_length=50, verbose_name="name")
     address = models.CharField(max_length=50, verbose_name="address")
@@ -26,10 +26,9 @@ class Geoplace(models.Model):
 
 
 class userProfile(models.Model):
-    userID = models.AutoField(primary_key=True)
-    latitude = models.IntegerField(verbose_name="latitude")
-    longitude = models.IntegerField(verbose_name="longitude")
-    the_geom_meter = models.CharField(max_length=50, verbose_name="geom_meter")
+    userID = models.CharField(max_length=50, verbose_name="user_id")
+    latitude = models.FloatField(verbose_name="latitude")
+    longitude = models.FloatField(verbose_name="longitude")
     smoker = models.BooleanField(verbose_name="smoker")
     drink_level = models.CharField(max_length=20, verbose_name="drink_level")
     dress_preference = models.CharField(max_length=30, verbose_name="dress_preference")
@@ -49,8 +48,7 @@ class userProfile(models.Model):
 
 
 class Cuisine(models.Model):
-    cuisineID = models.AutoField(primary_key=True)
-    placeID = models.ForeignKey(Geoplace, verbose_name="place_id")
+    placeID = models.IntegerField(verbose_name="place_id")
     Rcuisine = models.CharField(max_length=30, verbose_name="cuisine")
 
     def __unicode__(self):
@@ -58,30 +56,26 @@ class Cuisine(models.Model):
 
 
 class Hours(models.Model):
-    hourID = models.AutoField(primary_key=True)
-    placeID = models.ForeignKey(Geoplace, verbose_name="place_id")
+    placeID = models.IntegerField(verbose_name="place_id")
     hours = models.CharField(max_length=20, verbose_name="hours")
     days = models.CharField(max_length=5, verbose_name="days")
 
 
 class Parking(models.Model):
-    placeID = models.ForeignKey(Geoplace, verbose_name="place_id")
-    parkingID = models.AutoField(primary_key=True)
+    placeID = models.IntegerField(verbose_name="place_id")
     parking_lot = models.CharField(max_length=20, verbose_name="parking")
 
 
 class ratingFinal(models.Model):
-    ratingID = models.AutoField(primary_key=True)
-    userID = models.ForeignKey(userProfile, verbose_name="user_id")
-    placeID = models.ForeignKey(Geoplace, verbose_name="place_id")
+    userID = models.CharField(max_length=50, verbose_name="user_id")
+    placeID = models.IntegerField(verbose_name="place_id")
     rating = models.IntegerField(verbose_name="rating")
     food_rating = models.IntegerField(verbose_name="food_rating")
     service_rating = models.IntegerField(verbose_name="service_rating")
 
 
 class userCuisine(models.Model):
-    ucID = models.AutoField(primary_key=True)
-    userID = models.ForeignKey(userProfile, verbose_name="user_id")
+    userID = models.CharField(max_length=50, verbose_name="user_id")
     Rcuisine = models.CharField(max_length=30, verbose_name="cuisine")
 
 

@@ -9,7 +9,7 @@
 	
 	
 	
-	<title>Restaurant Store</title>
+	<title>Sign In</title>
 	<meta name="description" content="">
 	
 	<!-- Mobile viewport optimized: h5bp.com/viewport -->
@@ -17,34 +17,33 @@
     {% load staticfiles %}
 	
 	<link rel="stylesheet" media="screen" href={% static "css/superfish.css"%} />
-	<link rel="stylesheet" media="all" href={% static "css/nivo-slider.css"%}   />
-	<link rel="stylesheet" media="all" href={% static "css/tweet.css"%} />
-	<link rel="stylesheet" href={% static "css/style.css"%} >
-	<link rel="stylesheet" media="all" href={% static "css/lessframework.css"%} />
+	<link rel="stylesheet" media="all" href={% static "css/nivo-slider.css"%}  />
+	<link rel="stylesheet" media="all" href={% static "css/tweet.css"%}  />
+	<link rel="stylesheet" href={% static "css/style.css"%}>
+	<link rel="stylesheet" media="all" href={% static "css/lessframework.css" %}/>
+	
+	
+	<!-- All JavaScript at the bottom, except this Modernizr build.
+	   Modernizr enables HTML5 elements & feature detects for optimal performance.
+	   Create your own custom Modernizr build: www.modernizr.com/download/ -->
 	<script src={% static "js/modernizr-2.5.3.min.js"%}></script>
 </head>
 <body>
-
-
-
 	<!-- HEADER -->
 	<header>
-		
 		<!-- header wrapper -->
 		<div class="wrapper cf">
 			<div id="logo">
 				<a href="index.html" ><img alt="" src={% static "img/logo.png"%} /></a>
 			</div>
-		</div><!-- ENDS header wrapper -->
-		
-		
-		
+		</div>
+        <!-- ENDS header wrapper -->
 		<!-- nav -->
 		<nav class="cf">
 			<div class="wrapper cf">
 				<ul id="nav" class="sf-menu">
-					<li class="current-menu-item"><a href="index.html">HOME<i><b></b></i></a></li>
-					<li><a href="page.html">ABOUT<i><b></b></i></a>
+					<li><a href="index.html">HOME<i><b></b></i></a></li>
+					<li><a href="page.html">FEATURES<i><b></b></i></a>
 						<ul>
 							<li><a href="page.html">Columns</a></li>
 							<li><a href="page-typography.html">Typography</a></li>
@@ -54,7 +53,7 @@
 					<li><a href="blog.html">BLOG<i><b></b></i></a></li>
 					<li><a href="portfolio.html">WORK<i><b></b></i></a></li>
 					<li><a href="contact.html">CONTACT<i><b></b></i></a></li>
-					<li><a href="/sign/">SIGN IN NOW!<i><b></b></i></a></li>
+					<li class="current-menu-item"><a href="/sign/">SIGN IN NOW!<i><b></b></i></a></li>
 				</ul>
 				<div id="combo-holder"></div>
 			</div>
@@ -69,66 +68,40 @@
 	<div role="main" id="main">
 		<div class="wrapper">
 		
-		<!-- SLIDER -->
-		<div class="slider-wrapper theme-default theme-project theme-home">
-            <div class="ribbon"></div>
-            <div id="slider" class="nivoSlider">
-                <img alt="" src={% static "img/dummies/slides/01.jpg"%}  />
-                <a href="#"><img alt="" src={% static "img/dummies/slides/02.jpg"%}  /></a>
-                <img alt="" src={% static "img/dummies/slides/03.jpg"%} />
-            </div>
-        </div>
-		<!-- ENDS SLIDER -->
-		
-		
-		<!-- headline -->
-		<div class="headline">
-			We know your taste !
-		</div>
-		<!-- ENDS headline -->
-		
+			<!-- page-content -->
+			<div class="page-content">
+				
+				<!-- GOOGLE MAPS -->
+				<h2 class="heading">Sign In</h2>
+				<!-- form -->
+				<form id="contactForm" action="/sign/" method="post">
+                    {% if fails %}
+		                <p class=infobox-error">Username or password is invalid, please login in again</p>
+	                {% endif %}
+                    {% csrf_token %}
+					<fieldset>
+														
+						<p>
+							<label for="username" >Username</label>
+                            {{login_form.username}}
+							<!--<input name="name"  id="name" type="text" class="form-poshytip" title="Enter your full name" /> -->
+						</p>
+                        <p>
+                            <label for="password" >Password</label>
+                            {{login_form.password}}
+                        </p>
+						<p><input type="submit" value="Send" name="submit" id="submit" /> <span id="error" class="warning">Message</span></p>
+					</fieldset>
+					
+				</form>
+				<p id="sent-form-msg" class="success">Form data sent. Thanks for your comments.</p>
+				<!-- ENDS form -->	
+				<div class="c-1"></div>
+				<div class="c-2"></div>
+				<div class="c-3"></div>
+				<div class="c-4"></div>
+			</div><!-- ENDS page-content -->
 			
-	 	 <!-- Feature -->
-	 	 <ul id="filter-container-feature" class="feature">
-		 	<li>
-			 	<a href="single.html" class="thumb" ><img alt="" src={% static "img/dummies/430x500a.jpg" %} />
-				 	<div class="date"><span class="d">23</span><span class="m">Jan</span></div>
-			 	</a>
-			 	<div class="caption">Lorem ipsum dolor amet</div>
-		 	</li>
-		 	<li>
-			 	<a href="single.html" class="thumb" ><img alt="" src={% static "img/dummies/430x500b.jpg" %}  />
-				 	<div class="date"><span class="d">23</span><span class="m">Jan</span></div>
-			 	</a>
-			 	<div class="caption">Lorem ipsum dolor amet</div>
-		 	</li>
-		 	<li>
-			 	<a href="single.html" class="thumb" ><img alt="" src={% static "img/dummies/430x500c.jpg"%} />
-				 	<div class="date"><span class="d">23</span><span class="m">Jan</span></div>
-			 	</a>
-			 	<div class="caption">Lorem ipsum dolor amet</div>
-		 	</li>
-		 	
-		 	<li>
-			 	<a href="single.html" class="thumb" ><img alt=""  src={% static "img/dummies/430x500d.jpg" %} />
-				 	<div class="date"><span class="d">23</span><span class="m">Jan</span></div>
-			 	</a>
-			 	<div class="caption">Lorem ipsum dolor amet</div>
-		 	</li>
-		 	<li>
-			 	<a href="single.html" class="thumb" ><img alt="" src={% static "img/dummies/430x500e.jpg"%} />
-				 	<div class="date"><span class="d">23</span><span class="m">Jan</span></div>
-			 	</a>
-			 	<div class="caption">Lorem ipsum dolor amet</div>
-		 	</li>
-		 	<li>
-			 	<a href="single.html" class="thumb" ><img alt="" src={% static "img/dummies/430x500f.jpg" %} />
-				 	<div class="date"><span class="d">23</span><span class="m">Jan</span></div>
-			 	</a>
-			 	<div class="caption">Lorem ipsum dolor amet</div>
-		 	</li>  
-	 	 </ul>
-	 	 <!-- ENDS feature -->
 	  
 	  
 	  </div>
@@ -146,10 +119,9 @@
 			<div class="sb-holder cf">
 				<ul id="social-bar" class="cf">
 					<li class="left-corner"><i></i></li>
-					<li><a href="http://www.facebook.com"  title="Become a fan" ><img alt="Facebook" src={% static "img/social/Facebook.png" %}  /></a></li>
-					<li><a href="http://www.twitter.com" title="Follow my tweets" ><img alt="twitter" src={% static  "img/social/Twitter.png"%} /></a></li>
-					<li><a href="http://www.google.com"  title="Add to the circle" ><img alt="Google plus" src={% static "img/social/Google+.png"%} /></a></li>
-					
+					<li><a href="http://www.facebook.com"  title="Become a fan" ><img alt="Facebook" src={% static "img/social/Facebook.png"%} /></a></li>
+					<li><a href="http://www.twitter.com" title="Follow my tweets" ><img alt="twitter" src={% static "img/social/Twitter.png"%} /></a></li>
+					<li><a href="http://www.google.com"  title="Add to the circle" ><img alt="Google plus" src={% static  "img/social/Google+.png"%} /></a></li>
 					<li class="right-corner"><i></i></li>
 				</ul>
 				
@@ -165,19 +137,19 @@
 					<div class="widget-block">
 						<h4>RECENT POSTS</h4>
 						<div class="recent-post cf">
-							<a href="#" class="thumb"><img alt="Post" src={% static "img/dummies/54x54.gif"%} /></a>
+							<a href="#" class="thumb"><img alt="Post" src={% static "img/dummies/54x54.gif" %} /></a>
 							<div class="post-head">
 								<a href="#">Pellentesque habitant morbi senectus </a><span> March 12, 2011</span>
 							</div>
 						</div>
 						<div class="recent-post cf">
-							<a href="#" class="thumb"><img alt="Post" src={% static "img/dummies/54x54b.gif"%} /></a>
+							<a href="#" class="thumb"><img  alt="Post" src={% static "img/dummies/54x54b.gif" %}/></a>
 							<div class="post-head">
 								<a href="#">Pellentesque habitant morbi senectus</a><span> March 12, 2011</span>
 							</div>
 						</div>
 						<div class="recent-post cf">
-							<a href="#" class="thumb"><img alt="Post" src={% static "img/dummies/54x54c.gif"%} /></a>
+							<a href="#" class="thumb"><img  alt="Post"  src={% static "img/dummies/54x54c.gif" %}/></a>
 							<div class="post-head">
 								<a href="#">Pellentesque habitant morbi senectus</a><span> March 12, 2011</span>
 							</div>
@@ -192,9 +164,7 @@
 						<p>Vintage Template it's completely free this means you don't have to pay anything <a href="http://luiszuno.com/blog/license" >read license</a>.</p> 
 						
 						<p>Placeholder images by <a href="http://twistedfork.me/" >Dan Matutina</a></p>
-						<p>Visit <a href="http://templatecreme.com/" >Template Creme</a> and find the most beautiful free templates up to date.</p>
-						
-					</div>
+						<p>Visit <a href="http://templatecreme.com/" >Template Creme</a> and find the most beautiful free templates up to date.</p>					</div>
 					
 				</li>
 				
@@ -248,18 +218,23 @@
 	<script src={% static "js/custom.js"%}></script>
 	
 	<!-- superfish -->
-	<script  src={% static "js/superfish-1.4.8/js/hoverIntent.js"%}></script>
+	<script  src={% static "js/superfish-1.4.8/js/hoverIntent.js" %}></script>
 	<script  src={% static "js/superfish-1.4.8/js/superfish.js"%}></script>
-	<script  src={% static "js/superfish-1.4.8/js/supersubs.js"%}></script>
+	<script  src={% static "js/superfish-1.4.8/js/supersubs.js" %}></script>
 	<!-- ENDS superfish -->
 	
-	<script src={% static "js/tweet/jquery.tweet.js"%} ></script>
+	<script src={% static "js/tweet/jquery.tweet.js" %}></script>
 	<script src={% static "js/jquery.isotope.min.js"%}></script>
-	<script src={% static "js/jquery.nivo.slider.js"%} ></script>
+	<script src={% static "js/jquery.nivo.slider.js"%}></script>
 	<script src={% static "js/css3-mediaqueries.js"%}></script>
-	<script src={% static "js/tabs.js"%}></script>
-	<script  src={% static "js/poshytip-1.1/src/jquery.poshytip.min.js"%}></script>
+	<script src={% static "js/tabs.js" %}></script>
+	<script  src={% static "js/poshytip-1.1/src/jquery.poshytip.min.js" %}></script>
+	<script type="text/javascript" src={% static "js/form-validation.js" %}></script>
 	<!-- end scripts -->
-
+	
+	<!-- Start google map -->
+	<script>initialize();</script>
+	
+		
 </body>
 </html>
