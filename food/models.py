@@ -79,3 +79,8 @@ class userCuisine(models.Model):
     Rcuisine = models.CharField(max_length=30, verbose_name="cuisine")
 
 
+class cuisinelabel(models.Model):
+    placeID = models.IntegerField(verbose_name="place_id")
+    labelID = models.IntegerField(verbose_name="label_id")
+
+
