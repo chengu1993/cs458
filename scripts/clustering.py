@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn import tree
+from sklearn.neighbors import NearestNeighbors
 import pydotplus
 
 def rest_cluster():
@@ -38,6 +39,20 @@ def decision_tree():
                                     special_characters=True)
     graph = pydotplus.graph_from_dot_data(tree_graph)
     graph.write_pdf('decision_tree.pdf')
+
+def rest_knn(rest_data, k=3):
+    X = pd.read_csv('../training/rest_data.csv', low_memory=False)
+    neigh_model = NearestNeighbors(n_neighbors=k).fit(X)
+    neighbors = neigh_model.kneighbors(rest_data)
+    print(neighbors)
+
+def user_knn(user_data, k=3):
+    X = pd.read_csv('../training/user_data.csv', low_memory=False)
+    neigh_model = NearestNeighbors(n_neighbors=k).fit(X)
+    neighbors = neigh_model.kneighbors(user_data)
+    print(neighbors)
+
+
 
 
 user_cluster()
