@@ -1,0 +1,41 @@
+User Profile Mapping
+
+smoker:
+0 - FALSE
+1 - TRUE
+
+marital_status
+0 - single
+1 - married
+2 - widow
+
+hijos
+0 - independent
+1 - kids
+2 - dependent
+
+interest
+0 - variety
+1 - technology
+2 - none
+3 - retro
+4 - eco-friendly
+
+personality
+0 - thrifty-protector
+1 - hunter-ostentatious
+2 - hard-worker
+3 - conformist
+
+religon
+0 - none
+1 - Catholic
+2 - Christian
+3 - Mormon
+4 - Jewish
+
+activity
+0 - student
+1 - professional
+2 - working-class
+3 - unemployed
