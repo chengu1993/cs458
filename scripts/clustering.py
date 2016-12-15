@@ -39,16 +39,16 @@ def decision_tree():
     graph.write_pdf('user_decision_tree.pdf')
 
 def classify(user_data):
-    X = pd.read_csv('../training/user_data.csv', low_memory=False)
-    target = pd.read_csv('../training/user_label.csv', low_memory=False)['label']
+    X = pd.read_csv('training/user_data.csv', low_memory=False)
+    target = pd.read_csv('training/user_label.csv', low_memory=False)['label']
     tree_model = tree.DecisionTreeClassifier()
     tree_model = tree_model.fit(X, target)
 
-    ratings = pd.read_csv('../dataset/food_ratingfinal.csv', low_memory=False)
+    ratings = pd.read_csv('dataset/food_ratingfinal.csv', low_memory=False)
     label = tree_model.predict(user_data)
 
     rating_map = {}
-    X = pd.read_csv('../dataset/user_label.csv', low_memory=False)
+    X = pd.read_csv('dataset/user_label.csv', low_memory=False)
     for index, row in X.iterrows():
         group = row['label']
         if group != label: continue

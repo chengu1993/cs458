@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User, Group
 from food.models import ExtraInfo, Geoplace, Hours, Parking, Cuisine
 from django.contrib.auth import authenticate, login, logout
+from scripts.clustering import classify
 import datetime
 
 
@@ -140,7 +141,7 @@ def getDescription(res):
 
 
 def extraValues(request):
-    dress_preference = request.POST.get("dress_preference", "xxx")
+    dress_preference = request.POST.get("dress_preference", "")
     ambience = request.POST.get("ambience", "")
     transport = request.POST.get("transport", "")
     budget = request.POST.get("budget", "")
@@ -159,7 +160,9 @@ def extraValues(request):
         profile.append(current_user.personality)
         profile.append(current_user.religion)
         profile.append(current_user.activity)
-        print(profile)
+        placeIDList = classify([profile])
+        restaurantList = Geoplace.objects.filter(placeID__in=placeIDList)
+        print(len(restaurantList))
         pass
     request.session['extra_mark'] = True
     return render(request, 'index.html', locals())
