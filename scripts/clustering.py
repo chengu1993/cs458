@@ -65,15 +65,20 @@ def classify(user_data):
     sorted_rating = sorted(rating_map.items(), key=operator.itemgetter(1), reverse=True)
     recommend = []
     for item in sorted_rating:
-        recommend.append(item[0])
+        recommend.append(int(item[0]))
     return recommend
 
 
 def rest_knn(rest_data, k=3):
     X = pd.read_csv('../training/rest_data.csv', low_memory=False)
     neigh_model = NearestNeighbors(n_neighbors=k).fit(X)
-    neighbors = neigh_model.kneighbors(rest_data)
-    print(neighbors)
+    neighbors = neigh_model.kneighbors(rest_data)[1][0]
+    res = []
+    X = pd.read_csv('../dataset/rest_data.csv', low_memory=False)
+    for idx in neighbors:
+        rest = X.loc[idx, 'placeID']
+        res.append(int(rest))
+    return res
 
 def user_knn(user_data, k=3):
     X = pd.read_csv('../training/user_data.csv', low_memory=False)
@@ -87,6 +92,6 @@ def user_knn(user_data, k=3):
 # user_cluster()
 # rest_cluster()
 # decision_tree()
-classify([[0, 0, 0, 0, 1989, 0, 0, 0, 0]])
-
+# classify([[0, 0, 0, 0, 1989, 0, 0, 0, 0]])
+rest_knn([[23.7523041,	-99.1669133,	0,	2,	0,	0,	1,	0,	0,	1,	44,	5]])
 
