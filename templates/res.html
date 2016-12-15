@@ -6,7 +6,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	<title>Vintage Template</title>
+	<title>{{ restaurant.name }}</title>
 	<meta name="description" content="">
     {% load staticfiles %}
 	<!-- Mobile viewport optimized: h5bp.com/viewport -->
@@ -72,16 +72,6 @@
 	        		<!-- GOOGLE MAPS -->
 				<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true" ></script>
 				<script type="text/javascript">
-                    function htmldecode(str) {
-                         str = str.replace(/&amp;/gi, '&');
-                         str = str.replace(/&nbsp;/gi, ' ');
-                         str = str.replace(/&quot;/gi, '"');
-                         str = str.replace(/&#39;/g, "'");
-                         str = str.replace(/&lt;/gi, '<');
-                         str = str.replace(/&gt;/gi, '>');
-                         str = str.replace(/<br[^>]*>(?:(rn)|r|n)?/gi, 'n');
-                         return str;
-                    }
 					function initialize() {
 						var latlng = new google.maps.LatLng({{ restaurant.latitude }}, {{ restaurant.longitude }});
                         var bounds = new google.maps.LatLngBounds();
@@ -141,19 +131,14 @@
 			
 			<!-- related -->
 			<div class="related-projects">
-				<h2 class="related-heading">Related projects</h2>
+				<h2 class="related-heading">Related Restaurants</h2>
 				<ul class="related-list cf">
-					<li>
-						<a href="#" class="thumb"><img alt="" src={% static "img/dummies/560x300a.jpg" %} /></a>
-						<a href="single.html" class="heading">Pellentesque habitant morbi</a>
-					</li>
-					<li>
-						<a href="#" class="thumb"><img alt="" src={% static "img/dummies/560x300b.jpg"%} /></a>
-						<a href="single.html" class="heading">Pellentesque habitant morbi</a>
-					</li>
-					<li>
-						<a href="#" class="thumb"><img alt="" src={% static "img/dummies/560x300c.jpg"%} /></a>
-						<a href="single.html" class="heading">Pellentesque habitant morbi</a>
+                    {% for res in related %}
+                        <li>
+                            <a href="/rec/?id={{ res.id }}" class="thumb"><img alt="" src={% static "img/dummies/560x300a.jpg" %} /></a>
+                            <a href="/rec/?id={{ res.id }}" class="heading">{{ res.name }}</a>
+					    </li>
+                    {% endfor %}
 					</li>
 				</ul>
 			</div>
