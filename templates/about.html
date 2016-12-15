@@ -9,7 +9,7 @@
 	
 	
 	
-	<title>Vintage Template</title>
+	<title>about</title>
 	<meta name="description" content="">
 	{% load staticfiles %}
 	<!-- Mobile viewport optimized: h5bp.com/viewport -->
@@ -32,7 +32,7 @@
 		<!-- header wrapper -->
 		<div class="wrapper cf">
 			<div id="logo">
-				<a href="index.html" ><img alt=""  src={% static "img/logo.png" %} /></a>
+				<a href="/index/" ><img alt=""  src={% static "img/logo.png" %} /></a>
 			</div>
 		</div><!-- ENDS header wrapper -->
 		
@@ -46,7 +46,7 @@
 					<li  class="current-menu-item"><a href="/about/">ABOUT<i><b></b></i></a></li>
                     {% if request.user.is_authenticated %}
                         <li><a href="/info/">INFO<i><b></b></i></a></li>
-					    <li><a href="/logout/">LOG OUT {{ request.user.username }}<i><b></b></i></a></li>
+					    <li><a href="/logout/">LOG OUT: {{ request.user.username }}<i><b></b></i></a></li>
                     {% else %}
                         <li><a href="/sign/">SIGN IN NOW!<i><b></b></i></a></li>
                     {% endif %}
@@ -80,54 +80,31 @@
 					</div>
 					
 					<div class="one-half last">
-						<h4 class="heading">One half columns</h4>
-						Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
+						<h4 class="heading">Contribution</h4>
+                        <div class="lists-heart">
+                            <strong>Chen Gu:</strong>
+						<ul>
+							<li>Clean up and preprocess data.</li>
+							<li>Maintain database</li>
+							<li>Implement the function to get top k rated restaurant in certain group</li>
+                            <li>Write Report</li>
+						</ul>
+                                <strong>Jiaqi Gu:</strong>
+						<ul>
+							<li>Clustering users and restaurants</li>
+							<li>Decision tree training</li>
+							<li>Classification</li>
+						</ul>
+                                <strong>Ruiming Kou:</strong>
+						<ul>
+							<li>Implement the overall system using python</li>
+							<li>Desgin the rule based method in this system.</li>
+							<li>Implement the kNN method to get related restaurants</li>
+						</ul>
+						</div>
 					</div>
 					<div class="clearfix"></div>
 					<!-- ENDS 2 cols -->
-					
-					
-					<!-- 3 cols -->
-					<div class="one-third">
-						<h4 class="heading">Preprocessing</h4>
-						Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
-					</div>
-					
-					<div class="one-third">
-						<h4 class="heading">One third columns</h4>
-						Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
-					</div>
-					
-					<div class="one-third last">
-						<h4 class="heading">One third columns</h4>
-						Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
-					</div>
-					<div class="clearfix"></div>
-					<!-- ENDS 3 cols -->
-					
-					
-					<!-- 4 cols -->
-					<div class="one-fourth">
-						<h4 class="heading">One fourth columns</h4>
-						Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
-					</div>
-					
-					<div class="one-fourth">
-						<h4 class="heading">One fourth columns</h4>
-						Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
-					</div>
-					
-					<div class="one-fourth">
-						<h4 class="heading">One fourth columns</h4>
-						Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
-					</div>
-					
-					<div class="one-fourth last">
-						<h4 class="heading">One fourth columns</h4>
-						Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
-					</div>
-					<div class="clearfix"></div>
-					<!-- ENDS 4 cols -->
 										
 				</div>
 				<!-- ENDS entry-content -->

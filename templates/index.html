@@ -27,7 +27,7 @@
 		<!-- header wrapper -->
 		<div class="wrapper cf">
 			<div id="logo">
-				<a href="index.html" ><img alt="" src={% static "img/logo.png"%} /></a>
+				<a href="/index/" ><img alt="" src={% static "img/logo.png"%} /></a>
 			</div>
 		</div><!-- ENDS header wrapper -->
 
@@ -40,7 +40,7 @@
                     {% if request.user.is_authenticated %}
                         <li><a href="/info/">INFO<i><b></b></i></a></li>
                         <li><a href="#" onclick="pop();return false;">RECOMMEND<i><b></b></i></a></li>
-					    <li><a href="/logout/">LOG OUT {{ request.user.username }}<i><b></b></i></a></li>
+					    <li><a href="/logout/">LOG OUT: {{ request.user.username }}<i><b></b></i></a></li>
                     {% else %}
                         <li><a href="/sign/">SIGN IN NOW!<i><b></b></i></a></li>
                     {% endif %}
