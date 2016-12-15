@@ -98,4 +98,20 @@ class ExtraInfo(models.Model):
     religion = models.CharField(max_length=10, verbose_name="religion", null=True)
     activity = models.CharField(max_length=20, verbose_name="activity", null=True)
 
+class RestaurantLabel(models.Model):
+    placeID = models.IntegerField(verbose_name="place_id")
+    latitude = models.FloatField(verbose_name="latitude")
+    longitude = models.FloatField(verbose_name="longitude")
+    alcohol = models.IntegerField(verbose_name="alcohol")
+    smoking_area = models.IntegerField(verbose_name="smoking_area")
+    dress_code = models.IntegerField(verbose_name="dress_code")
+    accessibility = models.IntegerField(verbose_name="accessibility")
+    price = models.IntegerField(verbose_name="price")
+    Rambience = models.IntegerField(verbose_name="Rambience")
+    franchise = models.IntegerField(verbose_name="franchise")
+    area = models.IntegerField(verbose_name="area")
+    cuisine = models.IntegerField(verbose_name="cuisine")
+    parking_lot = models.IntegerField(verbose_name="parking_lot")
+
+
 
