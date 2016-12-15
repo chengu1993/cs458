@@ -19,6 +19,7 @@ def getMainPage(request):
         restaurants = Geoplace.objects.all()
         recent = restaurants[0:15]
         for res in recent:
+            res.imgId = res.id % 20 + 1
             res.price = getBudgetSymbol(res.price)
     return render(request, 'index.html', locals())
 
