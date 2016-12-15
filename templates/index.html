@@ -82,33 +82,34 @@
         <div class="modal-body">
           <form id="contactForm" action="/extra/" method="post">
               {% csrf_token %}
-              <label for="dress_preference">dress preference:</label>
-              <select name="dress_preference">
+              <label for="dress_preference">Dress preference</label>
+              <select id='id_dress_preference' name="dress_preference">
                   <option value="informal">informal</option>
                   <option value="formal">formal</option>
                   <option value="no_preference">no preference</option>
                   <option value="elegant">elegant</option>
               </select>
 
-              <label for="ambience">ambience:</label>
-              <select name="ambience">
+              <label for="ambience">Ambience</label>
+              <select id='id_ambience' name="ambience">
                   <option value="familiar">familiar</option>
                   <option value="quiet">quiet</option>
               </select>
 
-              <label for="transport">transport:</label>
-              <select name="transport">
+              <label for="transport">Transport</label>
+              <select id='id_transport' name="transport">
                   <option value="on_foot">on foot</option>
                   <option value="public">public</option>
                   <option value="car_owner">car owner</option>
               </select>
 
-              <label for="budget">budget:</label>
-              <select name="budget">
+              <label for="budget">Budget</label>
+              <select id='id_budget' name="budget">
                   <option value="medium">medium</option>
                   <option value="low">low</option>
                   <option value="high">high</option>
               </select>
+              <br/>
               <br/><input type="submit" value="Done" />
           </form>
         </div>
@@ -131,7 +132,7 @@
 	 	 <ul id="filter-container-feature" class="feature">
              {% for rest in recent %}
                  <li>
-			 	    <a href="/rec/?id={{rest.id  }}" class="thumb" ><img alt="" src={% static "img/dummies/430x500a.jpg" %} />
+			 	    <a href="/rec/?id={{rest.id  }}" class="thumb" ><img alt="" src="/static/img/dummies/{{ rest.imgId }}.jpg"  />
 				 	    <div class="date"><span class="d">{{ rest.price }}</span><span class="m">budget</span></div>
                      </a>
 			 	    <div class="caption">{{ rest.name }}</div>

@@ -312,6 +312,10 @@
 #contactForm #id_personality,
 #contactForm #id_religion,
 #contactForm #id_activity,
+#contactForm #id_dress_preference,
+#contactForm #id_ambience,
+#contactForm #id_transport,
+#contactForm #id_budget,
 #contactForm #id_drink_level{
   width: auto;
   color: #444;
@@ -319,6 +323,7 @@
   background: #f3e4c8;
   padding: 10px 15px;
   margin-top: 10px;
+  margin-bottom: 10px;
   box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.1);
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
