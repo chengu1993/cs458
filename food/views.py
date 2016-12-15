@@ -161,8 +161,48 @@ def extraValues(request):
         profile.append(current_user.religion)
         profile.append(current_user.activity)
         placeIDList = classify([profile])
-        restaurantList = Geoplace.objects.filter(placeID__in=placeIDList)
-        print(len(restaurantList))
+        new_placeID_list = []
+        if transport == 'car_owner':
+            parkinglist = Parking.objects.filter(placeID__in=placeIDList). \
+                filter(parking_lot__in=['public', 'yes', 'valet_parking', 'free', 'street', 'validated_parking'])
+            for parking in parkinglist:
+                new_placeID_list.append(parking.placeID)
+        else:
+            new_placeID_list = placeIDList
+        restaurantList = Geoplace.objects.filter(placeID__in=new_placeID_list)\
+            .filter(dress_code=dress_preference).filter(Rambience=ambience).filter(price=budget)
+        if len(restaurantList) <= 30:
+            recent = restaurantList
+        else:
+            recent = restaurantList[0 : 30]
         pass
     request.session['extra_mark'] = True
     return render(request, 'index.html', locals())
+
+
+def userInfo(request):
+    userId = request.user.id
+    print(userId)
+    current_user = User.objects.filter(id=userId)[0]
+    smoker = [False, True]
+    drink_level = ['abstemious', 'social drinker', 'casual drinker']
+    marital_status = ['single', 'married', 'widow']
+    hijos = ['independent', 'kids', 'dependent']
+    interest = ['variety', 'technology', 'none', 'retro', 'eco-friendly']
+    personality = ['thrifty-protector', 'hunter-ostentatious', 'hard-worker', 'conformist']
+    religon = ['none', 'Catholic', 'Christian', 'Mormon', 'Jewish']
+    activity = ['student', 'professional', 'working-class', 'unemployed']
+    extraInfo = ExtraInfo.objects.filter(userID=current_user)[0]
+    valueList = []
+    extraInfo.smoker = smoker[int(extraInfo.smoker)]
+    extraInfo.drink_level = drink_level[int(extraInfo.drink_level)]
+    extraInfo.marital_status = marital_status[int(extraInfo.marital_status)]
+    extraInfo.hijos = hijos[int(extraInfo.hijos)]
+    extraInfo.interest = interest[int(extraInfo.interest)]
+    extraInfo.personality = personality[int(extraInfo.personality)]
+    extraInfo.religion = personality[int(extraInfo.religion)]
+    extraInfo.activity = activity[int(extraInfo.activity)]
+    return render(request, 'userProfile.html', locals())
+
+def getAbout(request):
+    return render(request, 'about.html', locals())
