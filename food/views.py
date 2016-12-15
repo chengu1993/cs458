@@ -203,3 +203,6 @@ def userInfo(request):
     extraInfo.religion = personality[int(extraInfo.religion)]
     extraInfo.activity = activity[int(extraInfo.activity)]
     return render(request, 'userProfile.html', locals())
+
+def getAbout(request):
+    return render(request, 'about.html', locals())
