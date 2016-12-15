@@ -13,6 +13,7 @@ def getMainPage(request):
         restaurants = Geoplace.objects.all()
         recent = restaurants[0:15]
         for res in recent:
+            res.imgId = res.id % 20 + 1
             res.price = getBudgetSymbol(res.price)
     else:
         # TODO: replace this part with the result of clustering
@@ -103,6 +104,8 @@ def getRestaurants(request):
         print(IDList)
         related_restaurant = Geoplace.objects.filter(placeID__in=IDList)
         related = related_restaurant[0:3]
+        for relate in related:
+            relate.imgId = relate.id % 20 + 1
         # appeared = set()
         # related = []
         # for rest in related_restaurant:
@@ -113,6 +116,8 @@ def getRestaurants(request):
     else:
         restaurants = Geoplace.objects.all()
         related = restaurants[0:3]
+        for relate in related:
+            relate.imgId = relate.id % 20 + 1
     return render(request, 'res.html', locals())
 
 
@@ -194,10 +199,12 @@ def extraValues(request):
         if len(restaurantList) <= 30:
             recent = restaurantList
             for res in recent:
+                res.imgId = res.id % 20 + 1
                 res.price = getBudgetSymbol(res.price)
         else:
             recent = restaurantList[0:30]
             for res in recent:
+                res.imgId = res.id % 20 + 1
                 res.price = getBudgetSymbol(res.price)
     request.session['extra_mark'] = True
     return render(request, 'index.html', locals())
