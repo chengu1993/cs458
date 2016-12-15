@@ -305,6 +305,8 @@
   background: rgba(0, 0, 0, 0.1);
   color: #444;
 }
+#contactForm #id_smoker,
+#contactForm #id_
 #contactForm #id_drink_level{
   width: auto;
   color: #444;
