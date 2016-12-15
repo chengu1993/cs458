@@ -22,17 +22,17 @@ class RegistForm(forms.Form):
     confirmPassword = forms.CharField(label='confirm password', max_length=25,
                                       widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'confirm password'}))
     drink_level = forms.ChoiceField(widget=forms.Select, choices=[('0', 'abstemious'), ('1', 'social drinker'), ('2', 'casual drinker')])
-    smoker = forms.ChoiceField(widget=forms.RadioSelect, choices=[('0', 'FALSE'), ('1', 'TRUE')])
+    smoker = forms.ChoiceField(widget=forms.Select, choices=[('0', 'FALSE'), ('1', 'TRUE')])
     age = forms.IntegerField(label='age', widget=forms.NumberInput)
-    marital_status = forms.ChoiceField(widget=forms.RadioSelect, choices=[('0', 'single'), ('1', 'married'), ('2', 'widow')])
-    hijos = forms.ChoiceField(widget=forms.RadioSelect, choices=[('0', 'independent'), ('1', 'kids'), ('2', 'dependent')])
-    interest = forms.ChoiceField(widget=forms.RadioSelect, choices=[('0', 'variety'), ('1', 'technology'),
+    marital_status = forms.ChoiceField(widget=forms.Select, choices=[('0', 'single'), ('1', 'married'), ('2', 'widow')])
+    hijos = forms.ChoiceField(widget=forms.Select, choices=[('0', 'independent'), ('1', 'kids'), ('2', 'dependent')])
+    interest = forms.ChoiceField(widget=forms.Select, choices=[('0', 'variety'), ('1', 'technology'),
                                           ('2', 'none'), ('3', 'retro'), ('4', 'eco-friendly')])
-    personality = forms.ChoiceField(widget=forms.RadioSelect, choices=[('0', 'thrifty-protector'), ('1', 'hunter-ostentatious'),
+    personality = forms.ChoiceField(widget=forms.Select, choices=[('0', 'thrifty-protector'), ('1', 'hunter-ostentatious'),
                                              ('2', 'hard-worker'), ('3', 'conformist')])
-    religion = forms.ChoiceField(widget=forms.RadioSelect, choices=[('0', 'none'), ('1', 'Catholic'),
+    religion = forms.ChoiceField(widget=forms.Select, choices=[('0', 'none'), ('1', 'Catholic'),
                                           ('2', 'Christian'), ('3', 'Mormon'), ('4', 'Jewish')])
-    activity = forms.ChoiceField(widget=forms.RadioSelect, choices=[('0', 'student'), ('1', 'professional'),
+    activity = forms.ChoiceField(widget=forms.Select, choices=[('0', 'student'), ('1', 'professional'),
                                           ('2', 'unemployed'), ('3', 'working-class')])
 
     def clean_username(self):

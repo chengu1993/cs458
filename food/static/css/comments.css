@@ -306,7 +306,12 @@
   color: #444;
 }
 #contactForm #id_smoker,
-#contactForm #id_
+#contactForm #id_marital_status,
+#contactForm #id_hijos,
+#contactForm #id_interest,
+#contactForm #id_personality,
+#contactForm #id_religion,
+#contactForm #id_activity,
 #contactForm #id_drink_level{
   width: auto;
   color: #444;
