@@ -6,30 +6,20 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	
-	
-	
 	<title>Vintage Template</title>
 	<meta name="description" content="">
-	
+    {% load staticfiles %}
 	<!-- Mobile viewport optimized: h5bp.com/viewport -->
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	
-	<link rel="stylesheet" media="screen" href="css/superfish.css" /> 
-	<link rel="stylesheet" href="css/nivo-slider.css" media="all"  /> 
-	<link rel="stylesheet" href="css/tweet.css" media="all"  />
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" media="all" href="css/lessframework.css"/>
-	
-	
-	<!-- All JavaScript at the bottom, except this Modernizr build.
-	   Modernizr enables HTML5 elements & feature detects for optimal performance.
-	   Create your own custom Modernizr build: www.modernizr.com/download/ -->
-	<script src="js/modernizr-2.5.3.min.js"></script>
-</head>
-<body>
-
-
+	<link rel="stylesheet" media="screen" href={% static "css/superfish.css"%} />
+	<link rel="stylesheet" media="all" href={% static "css/nivo-slider.css"%}  />
+	<link rel="stylesheet" media="all" href={% static "css/tweet.css" %} />
+	<link rel="stylesheet" href={% static "css/style.css"%}>
+	<link rel="stylesheet" media="all" href={% static "css/lessframework.css"%}/>
+	<script src={% static "js/modernizr-2.5.3.min.js"%}></script>
+    </head>
+    <body>
 
 	<!-- HEADER -->
 	<header>
@@ -37,7 +27,7 @@
 		<!-- header wrapper -->
 		<div class="wrapper cf">
 			<div id="logo">
-				<a href="index.html" ><img src="img/logo.png" alt="" /></a>
+				<a href="index.html" ><img alt="" src={% static "img/logo.png" %} /></a>
 			</div>
 		</div><!-- ENDS header wrapper -->
 		
@@ -47,7 +37,7 @@
 		<nav class="cf">
 			<div class="wrapper cf">
 				<ul id="nav" class="sf-menu">
-					<li><a href="index.html">HOME<i><b></b></i></a></li>
+					<li><a href="/index/">HOME<i><b></b></i></a></li>
 					<li><a href="page.html">FEATURES<i><b></b></i></a>
 						<ul>
 							<li><a href="page.html">Columns</a></li>
@@ -79,30 +69,63 @@
 				<!-- entry-content -->	
 	        	<div class="entry-content cf">
 	        		
-	        		<!-- SLIDER -->
-					<div class="slider-wrapper theme-default">
-			            <div class="ribbon"></div>
-			            <div id="slider-project" class="nivoSlider">
-			                <img src="img/dummies/slides/01.jpg" alt="" />
-			                <img src="img/dummies/slides/02.jpg" alt="" >
-			                <img src="img/dummies/slides/03.jpg" alt=""  />
-			            </div>
-			        </div>
-					<!-- ENDS SLIDER -->
+	        		<!-- GOOGLE MAPS -->
+				<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true" ></script>
+				<script type="text/javascript">
+                    function htmldecode(str) {
+                         str = str.replace(/&amp;/gi, '&');
+                         str = str.replace(/&nbsp;/gi, ' ');
+                         str = str.replace(/&quot;/gi, '"');
+                         str = str.replace(/&#39;/g, "'");
+                         str = str.replace(/&lt;/gi, '<');
+                         str = str.replace(/&gt;/gi, '>');
+                         str = str.replace(/<br[^>]*>(?:(rn)|r|n)?/gi, 'n');
+                         return str;
+                    }
+					function initialize() {
+						var latlng = new google.maps.LatLng({{ restaurant.latitude }}, {{ restaurant.longitude }});
+                        var bounds = new google.maps.LatLngBounds();
+						var myOptions = {
+						  zoom: 8,
+						  center: latlng,
+						  mapTypeId: google.maps.MapTypeId.ROADMAP
+					};
+					var map = new google.maps.Map(document.getElementById("map_canvas"),
+					    myOptions);
+                        var marker = new google.maps.Marker({
+                            position: latlng,
+                            map: map,
+                            title: 'Hello World!'
+                        });
+					}
+				</script>
+				<h2 class="heading">Location</h2>
+				<div id="map_canvas"></div>
+                <div>
+                    <div class="lists-heart">
+						<ul>
+							<li><strong>address:</strong> {{ restaurant.address }}, <strong>city:</strong> {{ restaurant.city }}</li>
+							<li><strong>state: </strong>{{ restaurant.state }}, <strong>country: </strong>{{ restaurant.country }}</li>
+						</ul>
+					</div>
+                </div>
+
+				<!-- ENDS GOOGLE MAPS -->
 						
-					<h2>REGULAR PAGE</h2>	
+					<h2>{{ restaurant.name }}</h2>
 	        		<!-- project content -->
+                    <br/>
 	        		<div class="project-content">
-		        		<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.
-		        		</p>
+		        		<p class="dropcap">{{ description }}</p>
 	        		</div>
 	        		<!-- ENDS project content -->
 	        		
 	        		<!-- project info -->
 					<div class="project-info">
-						<p><strong>Client</strong>Mr. Tanaka</p>
-						<p><strong>Date</strong>Jan 12, 2012</p>
-						<p><a href="http://themeforest.net/?ref=Ansimuz" >Launch Project</a></p>
+						<p><strong>Parking</strong>{{ parking.parking_lot }}</p>
+						<p><strong>Open time</strong>{{ open_time.hours }}</p>
+                        <p><strong>Open date</strong>{{ open_time.days }}</p>
+						<p><a href="{{ restaurant.url }}" >official website</a></p>
 					</div>
 					<!-- ENDS project info -->	
 					
@@ -121,15 +144,15 @@
 				<h2 class="related-heading">Related projects</h2>
 				<ul class="related-list cf">
 					<li>
-						<a href="#" class="thumb"><img src="img/dummies/560x300a.jpg" alt="" /></a>
+						<a href="#" class="thumb"><img alt="" src={% static "img/dummies/560x300a.jpg" %} /></a>
 						<a href="single.html" class="heading">Pellentesque habitant morbi</a>
 					</li>
 					<li>
-						<a href="#" class="thumb"><img src="img/dummies/560x300b.jpg" alt="" /></a>
+						<a href="#" class="thumb"><img alt="" src={% static "img/dummies/560x300b.jpg"%} /></a>
 						<a href="single.html" class="heading">Pellentesque habitant morbi</a>
 					</li>
 					<li>
-						<a href="#" class="thumb"><img src="img/dummies/560x300c.jpg" alt="" /></a>
+						<a href="#" class="thumb"><img alt="" src={% static "img/dummies/560x300c.jpg"%} /></a>
 						<a href="single.html" class="heading">Pellentesque habitant morbi</a>
 					</li>
 				</ul>
@@ -152,9 +175,9 @@
 			<div class="sb-holder cf">
 				<ul id="social-bar" class="cf">
 					<li class="left-corner"><i></i></li>
-					<li><a href="http://www.facebook.com"  title="Become a fan" ><img src="img/social/Facebook.png"  alt="Facebook" /></a></li>
-					<li><a href="http://www.twitter.com" title="Follow my tweets" ><img src="img/social/Twitter.png"  alt="twitter" /></a></li>
-					<li><a href="http://www.google.com"  title="Add to the circle" ><img src="img/social/Google+.png" alt="Google plus" /></a></li>
+					<li><a href="http://www.facebook.com"  title="Become a fan" ><img alt="Facebook" src={% static "img/social/Facebook.png" %} /></a></li>
+					<li><a href="http://www.twitter.com" title="Follow my tweets" ><img alt="twitter" src={% static "img/social/Twitter.png" %} /></a></li>
+					<li><a href="http://www.google.com"  title="Add to the circle" ><img alt="Google plus" src={% static "img/social/Google+.png"%}  /></a></li>
 					<li class="right-corner"><i></i></li>
 				</ul>
 				
@@ -170,19 +193,19 @@
 					<div class="widget-block">
 						<h4>RECENT POSTS</h4>
 						<div class="recent-post cf">
-							<a href="#" class="thumb"><img src="img/dummies/54x54.gif" alt="Post" /></a>
+							<a href="#" class="thumb"><img alt="Post" src={% static "img/dummies/54x54.gif"%} /></a>
 							<div class="post-head">
 								<a href="#">Pellentesque habitant morbi senectus </a><span> March 12, 2011</span>
 							</div>
 						</div>
 						<div class="recent-post cf">
-							<a href="#" class="thumb"><img src="img/dummies/54x54b.gif" alt="Post" /></a>
+							<a href="#" class="thumb"><img  alt="Post" src={% static "img/dummies/54x54b.gif"%} /></a>
 							<div class="post-head">
 								<a href="#">Pellentesque habitant morbi senectus</a><span> March 12, 2011</span>
 							</div>
 						</div>
 						<div class="recent-post cf">
-							<a href="#" class="thumb"><img src="img/dummies/54x54c.gif" alt="Post" /></a>
+							<a href="#" class="thumb"><img alt="Post" src={% static "img/dummies/54x54c.gif" %} /></a>
 							<div class="post-head">
 								<a href="#">Pellentesque habitant morbi senectus</a><span> March 12, 2011</span>
 							</div>
@@ -245,24 +268,27 @@
 	
 	<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
+	<script>window.jQuery || document.write('<script src={% static  "js/jquery-1.7.1.min.js"%}><\/script>')</script>
 	
 	<!-- scripts concatenated and minified via build script -->
-	<script src="js/custom.js"></script>
+	<script src={% static "js/custom.js"%}></script>
 	
 	<!-- superfish -->
-	<script  src="js/superfish-1.4.8/js/hoverIntent.js"></script>
-	<script  src="js/superfish-1.4.8/js/superfish.js"></script>
-	<script  src="js/superfish-1.4.8/js/supersubs.js"></script>
+	<script  src={% static "js/superfish-1.4.8/js/hoverIntent.js"%}></script>
+	<script  src={% static "js/superfish-1.4.8/js/superfish.js"%}></script>
+	<script  src={% static "js/superfish-1.4.8/js/supersubs.js"%}></script>
 	<!-- ENDS superfish -->
 	
-	<script src="js/tweet/jquery.tweet.js" ></script>
-	<script src="js/jquery.isotope.min.js"></script>
-	<script src="js/jquery.nivo.slider.js" ></script>
-	<script src="js/css3-mediaqueries.js"></script>
-	<script src="js/tabs.js"></script>
-	<script  src="js/poshytip-1.1/src/jquery.poshytip.min.js"></script>
+	<script src={% static "js/tweet/jquery.tweet.js" %} ></script>
+	<script src={% static "js/jquery.isotope.min.js" %}></script>
+	<script src={% static "js/jquery.nivo.slider.js" %} ></script>
+	<script src={% static "js/css3-mediaqueries.js"%}></script>
+	<script src={% static "js/tabs.js"%}></script>
+	<script  src={% static "js/poshytip-1.1/src/jquery.poshytip.min.js"%}></script>
 	<!-- end scripts -->
+
+    <!-- Start google map -->
+	<script>initialize();</script>
 
 </body>
 </html>

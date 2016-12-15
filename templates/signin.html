@@ -75,7 +75,7 @@
 				<!-- form -->
 				<form id="contactForm" action="/sign/" method="post">
                     {% if fails %}
-		                <p class=infobox-error">Username or password is invalid, please login in again</p>
+		                <p class="infobox-error">Username or password is invalid, please login in again</p>
 	                {% endif %}
                     {% csrf_token %}
 					<fieldset>
@@ -88,12 +88,12 @@
                             <label for="password" >Password</label>
                             {{login_form.password}}
                         </p>
-						<p><input type="submit" value="Send" name="submit" id="submit" /> <span id="error" class="warning">Message</span>
+						<p><input type="submit" value="login" name="submit" id="submit" />
                             &emsp;&emsp;&emsp;&emsp;&emsp;Don't have an account yet? <a href="/register/">Sign Up</a></p>
 					</fieldset>
 					
 				</form>
-				<p id="sent-form-msg" class="success">Form data sent. Thanks for your comments.</p>
+				<!-- <p id="sent-form-msg" class="success">Form data sent. Thanks for your comments.</p> -->
 				<!-- ENDS form -->	
 				<div class="c-1"></div>
 				<div class="c-2"></div>

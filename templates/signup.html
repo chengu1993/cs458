@@ -19,13 +19,9 @@
 	<link rel="stylesheet" media="screen" href={% static "css/superfish.css"%} />
 	<link rel="stylesheet" media="all" href={% static "css/nivo-slider.css"%}  />
 	<link rel="stylesheet" media="all" href={% static "css/tweet.css"%}  />
+    <link rel="stylesheet" media="all" href={% static "css/register.css"%}  />
 	<link rel="stylesheet" href={% static "css/style.css"%}>
 	<link rel="stylesheet" media="all" href={% static "css/lessframework.css" %}/>
-	
-	
-	<!-- All JavaScript at the bottom, except this Modernizr build.
-	   Modernizr enables HTML5 elements & feature detects for optimal performance.
-	   Create your own custom Modernizr build: www.modernizr.com/download/ -->
 	<script src={% static "js/modernizr-2.5.3.min.js"%}></script>
 </head>
 <body>
@@ -72,30 +68,79 @@
 			<div class="page-content">
 				<h2 class="heading">Sign Up</h2>
 				<!-- form -->
-				<form id="contactForm" action="/register/" method="post">
+				<form id="contactForm" action="" method="post">
                     {% csrf_token %}
-					<fieldset>
 						<p>
 							<label for="username" >Username</label>
+                            {{ register_form.username.errors }}
                             {{register_form.username}}
 						</p>
                         <p>
                             <label for="email" >Email</label>
+                            {{ register_form.email.errors }}
                             {{register_form.email}}
                         </p>
                         <p>
                             <label for="password" >Password</label>
+                            {{ register_form.password.errors }}
                             {{register_form.password}}
                         </p>
                         <p>
                             <label for="confirm password" >Confirm Password</label>
+                            {{ register_form.confirmPassword.errors }}
                             {{register_form.confirmPassword}}
                         </p>
-						<p><input type="submit" value="Done" name="submit" id="submit" /> <span id="error" class="warning">Message</span></p>
-					</fieldset>
+                        <h2 class="heading">Personal Questionnaire</h2>
+                         <p>
+                            <label for="drinking level" >Drink Level</label>
+                             {{ register_form.drink_level.errors }}
+                            {{register_form.drink_level}}
+                        </p>
+                        <p>
+                            <label for="smoker" >smoker</label>
+                            {{ register_form.smoker.errors }}
+                            {{register_form.smoker}}
+                        </p>
+                        <p>
+                            <label for="age" >age</label>
+                            {{ register_form.age.errors }}
+                            {{register_form.age}}
+                        </p>
+                        <p>
+                            <label for="marital status" >marital status</label>
+                            {{ register_form.marital_status.errors }}
+                            {{register_form.marital_status}}
+                        </p>
+                        <p>
+                            <label for="hijos" >hijos</label>
+                            {{ register_form.hijos.errors }}
+                            {{register_form.hijos}}
+                        </p>
+                        <p>
+                            <label for="interest" >interest</label>
+                            {{ register_form.interest.errors }}
+                            {{register_form.interest}}
+                        </p>
+                        <p>
+                            <label for="personality" >personality</label>
+                            {{ register_form.personality.errors }}
+                            {{register_form.personality}}
+                        </p>
+                        <p>
+                            <label for="religion" >religion</label>
+                            {{ register_form.religion.errors }}
+                            {{register_form.religion}}
+                        </p>
+                        <p>
+                            <label for="activity" >activity</label>
+                            {{ register_form.activity.errors }}
+                            {{register_form.activity}}
+                        </p>
+
+						<p><input type="submit" value="Done" /></p>
 					
 				</form>
-				<p id="sent-form-msg" class="success">Form data sent. Thanks for your comments.</p>
+				<!-- <p id="sent-form-msg" class="success">Form data sent. Thanks for your comments.</p> -->
 				<!-- ENDS form -->	
 				<div class="c-1"></div>
 				<div class="c-2"></div>

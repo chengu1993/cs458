@@ -6,9 +6,6 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	
-	
-	
 	<title>Restaurant Store</title>
 	<meta name="description" content="">
 	
@@ -21,24 +18,19 @@
 	<link rel="stylesheet" media="all" href={% static "css/tweet.css"%} />
 	<link rel="stylesheet" href={% static "css/style.css"%} >
 	<link rel="stylesheet" media="all" href={% static "css/lessframework.css"%} />
+    <link rel="stylesheet" href={% static "css/register.css"%}/>
 	<script src={% static "js/modernizr-2.5.3.min.js"%}></script>
 </head>
 <body>
-
-
-
 	<!-- HEADER -->
 	<header>
-		
 		<!-- header wrapper -->
 		<div class="wrapper cf">
 			<div id="logo">
 				<a href="index.html" ><img alt="" src={% static "img/logo.png"%} /></a>
 			</div>
 		</div><!-- ENDS header wrapper -->
-		
-		
-		
+
 		<!-- nav -->
 		<nav class="cf">
 			<div class="wrapper cf">
@@ -54,7 +46,11 @@
 					<li><a href="blog.html">BLOG<i><b></b></i></a></li>
 					<li><a href="portfolio.html">WORK<i><b></b></i></a></li>
 					<li><a href="contact.html">CONTACT<i><b></b></i></a></li>
-					<li><a href="/sign/">SIGN IN NOW!<i><b></b></i></a></li>
+                    {% if request.user.is_authenticated %}
+					    <li><a href="/logout/">WELCOME {{ request.user.username }}<i><b></b></i></a></li>
+                    {% else %}
+                        <li><a href="/sign/">SIGN IN NOW!<i><b></b></i></a></li>
+                    {% endif %}
 				</ul>
 				<div id="combo-holder"></div>
 			</div>
@@ -79,8 +75,59 @@
             </div>
         </div>
 		<!-- ENDS SLIDER -->
-		
-		
+
+
+        <!-- POP WINDOW -->
+        <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2>Modal Header</h2>
+        </div>
+        <div class="modal-body">
+          <form id="contactForm" action="/extra/" method="post">
+              {% csrf_token %}
+              <label for="dress_preference">dress preference:</label>
+              <select name="dress_preference">
+                  <option value="informal">informal</option>
+                  <option value="formal">formal</option>
+                  <option value="no_preference">no preference</option>
+                  <option value="elegant">elegant</option>
+              </select>
+
+              <label for="ambience">ambience:</label>
+              <select name="ambience">
+                  <option value="family">family</option>
+                  <option value="friends">friends</option>
+                  <option value="solitary">solitary</option>
+              </select>
+
+              <label for="transport">transport:</label>
+              <select name="transport">
+                  <option value="on_foot">on foot</option>
+                  <option value="public">public</option>
+                  <option value="car_owner">car owner</option>
+              </select>
+
+              <label for="budget">budget:</label>
+              <select name="budget">
+                  <option value="medium">medium</option>
+                  <option value="low">low</option>
+                  <option value="high">high</option>
+              </select>
+              <br/><input type="submit" value="Done" />
+          </form>
+        </div>
+        <div class="modal-footer">
+          <h3>Modal Footer</h3>
+        </div>
+        </div>
+
+        </div>
+        <!-- ENDS POP WINDOW -->
+
 		<!-- headline -->
 		<div class="headline">
 			We know your taste !
@@ -90,43 +137,14 @@
 			
 	 	 <!-- Feature -->
 	 	 <ul id="filter-container-feature" class="feature">
-		 	<li>
-			 	<a href="single.html" class="thumb" ><img alt="" src={% static "img/dummies/430x500a.jpg" %} />
-				 	<div class="date"><span class="d">23</span><span class="m">Jan</span></div>
-			 	</a>
-			 	<div class="caption">Lorem ipsum dolor amet</div>
-		 	</li>
-		 	<li>
-			 	<a href="single.html" class="thumb" ><img alt="" src={% static "img/dummies/430x500b.jpg" %}  />
-				 	<div class="date"><span class="d">23</span><span class="m">Jan</span></div>
-			 	</a>
-			 	<div class="caption">Lorem ipsum dolor amet</div>
-		 	</li>
-		 	<li>
-			 	<a href="single.html" class="thumb" ><img alt="" src={% static "img/dummies/430x500c.jpg"%} />
-				 	<div class="date"><span class="d">23</span><span class="m">Jan</span></div>
-			 	</a>
-			 	<div class="caption">Lorem ipsum dolor amet</div>
-		 	</li>
-		 	
-		 	<li>
-			 	<a href="single.html" class="thumb" ><img alt=""  src={% static "img/dummies/430x500d.jpg" %} />
-				 	<div class="date"><span class="d">23</span><span class="m">Jan</span></div>
-			 	</a>
-			 	<div class="caption">Lorem ipsum dolor amet</div>
-		 	</li>
-		 	<li>
-			 	<a href="single.html" class="thumb" ><img alt="" src={% static "img/dummies/430x500e.jpg"%} />
-				 	<div class="date"><span class="d">23</span><span class="m">Jan</span></div>
-			 	</a>
-			 	<div class="caption">Lorem ipsum dolor amet</div>
-		 	</li>
-		 	<li>
-			 	<a href="single.html" class="thumb" ><img alt="" src={% static "img/dummies/430x500f.jpg" %} />
-				 	<div class="date"><span class="d">23</span><span class="m">Jan</span></div>
-			 	</a>
-			 	<div class="caption">Lorem ipsum dolor amet</div>
-		 	</li>  
+             {% for rest in recent %}
+                 <li>
+			 	    <a href="/rec/?id={{rest.id  }}" class="thumb" ><img alt="" src={% static "img/dummies/430x500a.jpg" %} />
+				 	    <div class="date"><span class="d">{{ rest.price }}</span><span class="m">budget</span></div>
+                     </a>
+			 	    <div class="caption">{{ rest.name }}</div>
+		 	    </li>
+             {% endfor %}
 	 	 </ul>
 	 	 <!-- ENDS feature -->
 	  
@@ -259,6 +277,12 @@
 	<script src={% static "js/css3-mediaqueries.js"%}></script>
 	<script src={% static "js/tabs.js"%}></script>
 	<script  src={% static "js/poshytip-1.1/src/jquery.poshytip.min.js"%}></script>
+    <script src={% static "js/popwindow.js" %}></script>
+    {% if 'extra_mark' not in request.session and request.user.is_authenticated %}
+    <script type="text/javascript">
+        pop();
+    </script>
+    {% endif %}
 	<!-- end scripts -->
 
 </body>

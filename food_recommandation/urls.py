@@ -21,5 +21,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index/', views.getMainPage),
     url(r'^sign/', views.sign),
-    url(r'^register/', views.register)
+    url(r'^register/', views.register),
+    url(r'^logout/', views.userLogout),
+    url(r'^rec/', views.getRestaurants),
+    url(r'^extra/', views.extraValues)
 ]
