@@ -4,6 +4,11 @@ smoker:
 0 - FALSE
 1 - TRUE
 
+drink_level
+0 - abstemious
+1 - social drinker
+2 - casual drinker
+
 marital_status
 0 - single
 1 - married
