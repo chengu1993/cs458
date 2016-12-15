@@ -2,9 +2,9 @@ from django.shortcuts import render
 from forms.usrForms import LoginForm, RegistForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User, Group
-from food.models import ExtraInfo, Geoplace, Hours, Parking, Cuisine
+from food.models import ExtraInfo, Geoplace, Hours, Parking, Cuisine, RestaurantLabel
 from django.contrib.auth import authenticate, login, logout
-from scripts.clustering import classify
+from scripts.clustering import classify, rest_knn
 import datetime
 
 
@@ -91,27 +91,27 @@ def getRestaurants(request):
         parking = parking[0]
     description = getDescription(restaurant)
     # TODO: replace this part with the result of kNN
-    # knnList = []
-    # knnList.append(restaurant.latitude)
-    # knnList.append(restaurant.longitude)
-    # knnList.append(restaurant.alcohol)
-    # knnList.append(restaurant.smoking_area)
-    # knnList.append(restaurant.dress_code)
-    # knnList.append(restaurant.accessibility)
-    # knnList.append(restaurant.price)
-    # knnList.append(restaurant.Rambience)
-    # knnList.append(restaurant.franchise)
-    # knnList.append(restaurant.area)
-    # cuisine = Cuisine.objects.filter(placeID=restaurant.placeID)
-    # if cuisine is None or len(cuisine) == 0:
-    #     cuisine = Cuisine()
-    #     cuisine.Rcuisine
-    # if parking.parking_lot == "not available":
-    #     knnList.append("0")
-    # else:
-    #     knnList.append(parking.parking_lot)
-    restaurants = Geoplace.objects.all()
-    related = restaurants[0:3]
+    restaurant_label = RestaurantLabel.objects.filter(placeID=restaurant.placeID)
+    if restaurant_label is not None and len(restaurant_label) >= 1:
+        labels = restaurant_label[0]
+        knn = [labels.latitude, labels.longitude, labels.alcohol,
+               labels.smoking_area, labels.dress_code, labels.accessibility,
+               labels.price, labels.Rambience, labels.franchise, labels.area, labels.cuisine, labels.parking_lot]
+        IDList = rest_knn(knn)
+        print(len(IDList))
+        print(IDList)
+        related_restaurant = Geoplace.objects.filter(placeID__in=IDList)
+        related = related_restaurant[0:3]
+        # appeared = set()
+        # related = []
+        # for rest in related_restaurant:
+        #     if rest.placeID not in appeared:
+        #         rest.delete()
+        #         appeared.add(rest.placeID)
+        # print(len(related_restaurant))
+    else:
+        restaurants = Geoplace.objects.all()
+        related = restaurants[0:3]
     return render(request, 'res.html', locals())
 
 

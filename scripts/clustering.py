@@ -70,18 +70,18 @@ def classify(user_data):
 
 
 def rest_knn(rest_data, k=3):
-    X = pd.read_csv('/training/rest_data.csv', low_memory=False)
+    X = pd.read_csv('training/rest_data.csv', low_memory=False)
     neigh_model = NearestNeighbors(n_neighbors=k).fit(X)
     neighbors = neigh_model.kneighbors(rest_data)[1][0]
     res = []
-    X = pd.read_csv('/dataset/rest_data.csv', low_memory=False)
+    X = pd.read_csv('dataset/rest_data.csv', low_memory=False)
     for idx in neighbors:
         rest = X.loc[idx, 'placeID']
         res.append(int(rest))
     return res
 
 def user_knn(user_data, k=3):
-    X = pd.read_csv('/training/user_data.csv', low_memory=False)
+    X = pd.read_csv('training/user_data.csv', low_memory=False)
     neigh_model = NearestNeighbors(n_neighbors=k).fit(X)
     neighbors = neigh_model.kneighbors(user_data)
     print(neighbors)
