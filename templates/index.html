@@ -87,9 +87,38 @@
           <h2>Modal Header</h2>
         </div>
         <div class="modal-body">
-          <p>Some text in the Modal Body</p>
-          <p>Some other text...</p>
-          <button>hello</button>
+          <form id="contactForm" action="/extra/" method="post">
+              {% csrf_token %}
+              <label for="dress_preference">dress preference:</label>
+              <select name="dress_preference">
+                  <option value="informal">informal</option>
+                  <option value="formal">formal</option>
+                  <option value="no_preference">no preference</option>
+                  <option value="elegant">elegant</option>
+              </select>
+
+              <label for="ambience">ambience:</label>
+              <select name="ambience">
+                  <option value="family">family</option>
+                  <option value="friends">friends</option>
+                  <option value="solitary">solitary</option>
+              </select>
+
+              <label for="transport">transport:</label>
+              <select name="transport">
+                  <option value="on_foot">on foot</option>
+                  <option value="public">public</option>
+                  <option value="car_owner">car owner</option>
+              </select>
+
+              <label for="budget">budget:</label>
+              <select name="budget">
+                  <option value="medium">medium</option>
+                  <option value="low">low</option>
+                  <option value="high">high</option>
+              </select>
+              <br/><input type="submit" value="Done" />
+          </form>
         </div>
         <div class="modal-footer">
           <h3>Modal Footer</h3>
@@ -249,9 +278,11 @@
 	<script src={% static "js/tabs.js"%}></script>
 	<script  src={% static "js/poshytip-1.1/src/jquery.poshytip.min.js"%}></script>
     <script src={% static "js/popwindow.js" %}></script>
+    {% if 'extra_mark' not in request.session and request.user.is_authenticated %}
     <script type="text/javascript">
         pop();
     </script>
+    {% endif %}
 	<!-- end scripts -->
 
 </body>

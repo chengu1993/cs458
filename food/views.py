@@ -137,3 +137,29 @@ def getDescription(res):
         des += 'Internet service is provided'
     des += 'Welcome to ' + res.name + '!'
     return des
+
+
+def extraValues(request):
+    dress_preference = request.POST.get("dress_preference", "xxx")
+    ambience = request.POST.get("ambience", "")
+    transport = request.POST.get("transport", "")
+    budget = request.POST.get("budget", "")
+    if ambience != "" and transport != "" and dress_preference != "" and budget != "":
+        profile = []
+        current_user = ExtraInfo.objects.filter(userID=request.user)[0]
+        if current_user.smoker:
+            profile.append("1")
+        else:
+            profile.append("0")
+        profile.append(current_user.drink_level)
+        profile.append(current_user.marital_status)
+        profile.append(current_user.hijos)
+        profile.append(current_user.birth_year)
+        profile.append(current_user.interest)
+        profile.append(current_user.personality)
+        profile.append(current_user.religion)
+        profile.append(current_user.activity)
+        print(profile)
+        pass
+    request.session['extra_mark'] = True
+    return render(request, 'index.html', locals())
