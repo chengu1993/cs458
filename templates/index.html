@@ -39,6 +39,7 @@
 					<li><a href="/about/">ABOUT<i><b></b></i></a></li>
                     {% if request.user.is_authenticated %}
                         <li><a href="/info/">INFO<i><b></b></i></a></li>
+                        <li><a href="#" onclick="pop();return false;">RECOMMEND<i><b></b></i></a></li>
 					    <li><a href="/logout/">LOG OUT {{ request.user.username }}<i><b></b></i></a></li>
                     {% else %}
                         <li><a href="/sign/">SIGN IN NOW!<i><b></b></i></a></li>

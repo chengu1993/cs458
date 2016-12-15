@@ -91,6 +91,25 @@ def getRestaurants(request):
         parking = parking[0]
     description = getDescription(restaurant)
     # TODO: replace this part with the result of kNN
+    # knnList = []
+    # knnList.append(restaurant.latitude)
+    # knnList.append(restaurant.longitude)
+    # knnList.append(restaurant.alcohol)
+    # knnList.append(restaurant.smoking_area)
+    # knnList.append(restaurant.dress_code)
+    # knnList.append(restaurant.accessibility)
+    # knnList.append(restaurant.price)
+    # knnList.append(restaurant.Rambience)
+    # knnList.append(restaurant.franchise)
+    # knnList.append(restaurant.area)
+    # cuisine = Cuisine.objects.filter(placeID=restaurant.placeID)
+    # if cuisine is None or len(cuisine) == 0:
+    #     cuisine = Cuisine()
+    #     cuisine.Rcuisine
+    # if parking.parking_lot == "not available":
+    #     knnList.append("0")
+    # else:
+    #     knnList.append(parking.parking_lot)
     restaurants = Geoplace.objects.all()
     related = restaurants[0:3]
     return render(request, 'res.html', locals())
@@ -173,9 +192,12 @@ def extraValues(request):
             .filter(dress_code=dress_preference).filter(Rambience=ambience).filter(price=budget)
         if len(restaurantList) <= 30:
             recent = restaurantList
+            for res in recent:
+                res.price = getBudgetSymbol(res.price)
         else:
-            recent = restaurantList[0 : 30]
-        pass
+            recent = restaurantList[0:30]
+            for res in recent:
+                res.price = getBudgetSymbol(res.price)
     request.session['extra_mark'] = True
     return render(request, 'index.html', locals())
 

@@ -236,6 +236,8 @@
   -o-box-shadow: 0px 0px 3px rgba(251, 228, 113, 0.4);
   box-shadow: 0px 0px 3px rgba(251, 228, 113, 0.4);
 }
+#commentform input[type='number'],
+#contactForm input[type='number'],
 #commentform input[type="text"],
 #contactForm input[type="text"],
 #commentform input[type="password"],
@@ -302,4 +304,18 @@
   margin-bottom: 40px;
   background: rgba(0, 0, 0, 0.1);
   color: #444;
+}
+#contactForm #id_drink_level{
+  width: auto;
+  color: #444;
+  font-size: 14px;
+  background: #f3e4c8;
+  padding: 10px 15px;
+  margin-top: 10px;
+  box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.1);
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
