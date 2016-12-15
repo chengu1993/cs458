@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin
 
 
 class Geoplace(models.Model):
@@ -82,5 +84,18 @@ class userCuisine(models.Model):
 class cuisinelabel(models.Model):
     placeID = models.IntegerField(verbose_name="place_id")
     labelID = models.IntegerField(verbose_name="label_id")
+
+
+class ExtraInfo(models.Model):
+    userID = models.ForeignKey(User, verbose_name="user_id")
+    smoker = models.BooleanField(verbose_name="smoker", default=False)
+    drink_level = models.CharField(max_length=20, verbose_name="drink_level", null=True)
+    marital_status = models.CharField(max_length=10, verbose_name="martial", null=True)
+    hijos = models.CharField(max_length=10, verbose_name="hijos", null=True)
+    birth_year = models.CharField(max_length=20, verbose_name="birth_year", null=True)
+    interest = models.CharField(max_length=30, verbose_name="interest", null=True)
+    personality = models.CharField(max_length=50, verbose_name="personality", null=True)
+    religion = models.CharField(max_length=10, verbose_name="religion", null=True)
+    activity = models.CharField(max_length=20, verbose_name="activity", null=True)
 
 
