@@ -47,7 +47,7 @@
 					<li><a href="portfolio.html">WORK<i><b></b></i></a></li>
 					<li><a href="contact.html">CONTACT<i><b></b></i></a></li>
                     {% if request.user.is_authenticated %}
-					    <li><a href="/logout/">WELCOME {{ request.user.username }}<i><b></b></i></a></li>
+					    <li><a href="/logout/">LOG OUT {{ request.user.username }}<i><b></b></i></a></li>
                     {% else %}
                         <li><a href="/sign/">SIGN IN NOW!<i><b></b></i></a></li>
                     {% endif %}
@@ -99,9 +99,8 @@
 
               <label for="ambience">ambience:</label>
               <select name="ambience">
-                  <option value="family">family</option>
-                  <option value="friends">friends</option>
-                  <option value="solitary">solitary</option>
+                  <option value="familiar">familiar</option>
+                  <option value="quiet">quiet</option>
               </select>
 
               <label for="transport">transport:</label>

@@ -24,5 +24,6 @@ urlpatterns = [
     url(r'^register/', views.register),
     url(r'^logout/', views.userLogout),
     url(r'^rec/', views.getRestaurants),
-    url(r'^extra/', views.extraValues)
+    url(r'^extra/', views.extraValues),
+    url(r'^info/', views.userInfo)
 ]
