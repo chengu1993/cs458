@@ -132,7 +132,7 @@
 				<ul class="related-list cf">
                     {% for res in related %}
                         <li>
-                            <a href="/rec/?id={{ res.id }}" class="thumb"><img alt="" src={% static "img/dummies/560x300a.jpg" %} /></a>
+                            <a href="/rec/?id={{ res.id }}" class="thumb"><img alt="" src="/static/img/dummies/{{ res.imgId }}.jpg" /></a>
                             <a href="/rec/?id={{ res.id }}" class="heading">{{ res.name }}</a>
 					    </li>
                     {% endfor %}
