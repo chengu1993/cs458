@@ -100,9 +100,10 @@ def getRestaurants(request):
                labels.smoking_area, labels.dress_code, labels.accessibility,
                labels.price, labels.Rambience, labels.franchise, labels.area, labels.cuisine, labels.parking_lot]
         IDList = rest_knn(knn)
-        print(len(IDList))
-        print(IDList)
-        related_restaurant = Geoplace.objects.filter(placeID__in=IDList)
+        if IDList is None or len(IDList) == 0:
+            related_restaurant = Geoplace.objects.all()
+        else:
+            related_restaurant = Geoplace.objects.filter(placeID__in=IDList)
         related = related_restaurant[0:3]
         for relate in related:
             relate.imgId = relate.id % 20 + 1
